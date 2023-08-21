@@ -1,0 +1,28 @@
+.data
+
+.text
+	li $t1, 0
+	li $t2, 2
+	
+while: 
+	beq $t1, 20, encerraPrograma
+	div $t1, $t2
+		
+	mfhi $s0
+		
+	bne $s0, $zero, imprimeimpar
+	addi $t1, $t1, 1
+	
+	j while
+		
+encerraPrograma:
+	li $v0, 10
+	syscall
+	
+imprimeimpar:
+	li $v0, 1
+	move $a0, $t1
+	syscall 
+	addi $t1, $t1, 1
+	j while
+	
